@@ -11,6 +11,15 @@ public class BaseballTest {
     Ball ball1 = new Ball();
     Ball ball2 = new Ball();
 
+    @DisplayName("숫자가 같은 지 확인하는 로직")
+    @Test
+    void isSameTest() {
+        int num1 = 1;
+        int num2 = 1;
+
+        assertThat(baseball.isSame(num1, num2)).isTrue();
+    }
+
     @DisplayName("스트라이크 여부 확인하는 로직")
     @Test
     void isStrikeTest() {
@@ -44,12 +53,28 @@ public class BaseballTest {
         assertThat(baseball.isNothing(baseball.isSame(ball1.getBallNum(), ball2.getBallNum()), baseball.isSame(ball1.getPosition(), ball2.getPosition()))).isTrue();
     }
 
-    @DisplayName("숫자가 같은 지 확인하는 로직")
+    @DisplayName("세 자리 숫자 랜덤으로 생성하는 로직")
     @Test
-    void isSameTest() {
-        int num1 = 1;
-        int num2 = 1;
+    void makeRandomThreeDigitNumber() {
+        int num = baseball.makeRandomThreeDigitNumber();
+        assertThat(num).isLessThan(1001);
+        assertThat(num).isGreaterThan(99);
+    }
 
-        assertThat(baseball.isSame(num1, num2)).isTrue();
+    @DisplayName("세 자리 숫자 나눠서 set에 넣는 로직")
+    @Test
+    void makeCheckingDuplicatedNumberSetTest() {
+        int num = 123;
+
+        assertThat(baseball.makeCheckingDuplicatedNumberSet(num)).contains(1);
+        assertThat(baseball.makeCheckingDuplicatedNumberSet(num)).contains(2);
+        assertThat(baseball.makeCheckingDuplicatedNumberSet(num)).contains(3);
+    }
+
+    @DisplayName("각 자리 수가 서로 다른 수로 이루어진 것 확인하는 로직")
+    @Test
+    void isDuplicatedThreeDigitNumberTest() {
+        int num = 132;
+        assertThat(baseball.isDuplicatedThreeDigitNumber(num)).isEqualTo(3);
     }
 }

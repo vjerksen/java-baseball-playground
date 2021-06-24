@@ -2,10 +2,19 @@ package baseball;
 
 public class Ball {
 
+    private int ballNumber;
     private int position;
     private int ballNum;
 
     public Ball() {
+    }
+
+    public int getBallNumber() {
+        return ballNumber;
+    }
+
+    public void setBallNumber(int ballNumber) {
+        this.ballNumber = ballNumber;
     }
 
     public int getPosition() {

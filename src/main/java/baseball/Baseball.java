@@ -1,5 +1,9 @@
 package baseball;
 
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
 public class Baseball {
 
     public Baseball() {
@@ -32,4 +36,34 @@ public class Baseball {
         }
         return false;
     }
+
+    public int makeRandomThreeDigitNumber() {
+        Random rand = new Random();
+        int returnValue = 0;
+
+        for (int i = 0; i < 3; i++) {
+            returnValue = (returnValue * 10) + (rand.nextInt(9) + 1);
+        }
+
+        return returnValue;
+    }
+
+    public int isDuplicatedThreeDigitNumber(int num) {
+        Set<Integer> set = makeCheckingDuplicatedNumberSet(num);
+
+        return set.size();
+    }
+
+    public Set<Integer> makeCheckingDuplicatedNumberSet(int i) {
+        Set<Integer> set = new HashSet<>();
+
+        while (i > 0) {
+            set.add(i % 10);
+            i /= 10;
+        }
+
+        return set;
+    }
+
+
 }
