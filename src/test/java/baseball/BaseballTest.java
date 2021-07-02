@@ -17,40 +17,33 @@ public class BaseballTest {
         int num1 = 1;
         int num2 = 1;
 
-        assertThat(baseball.isSame(num1, num2)).isTrue();
+        assertThat(baseball.isSame(num1, num2)).isEqualTo(1);
     }
 
     @DisplayName("스트라이크 여부 확인하는 로직")
     @Test
     void isStrikeTest() {
-        ball1.setBallNum(1);
-        ball1.setPosition(1);
-        ball2.setBallNum(1);
-        ball2.setPosition(1);
+        ball1.setBallArray(0, 1);
+        ball1.setBallArray(1, 2);
+        ball1.setBallArray(2, 3);
+        ball2.setBallArray(0, 1);
+        ball2.setBallArray(1, 2);
+        ball2.setBallArray(2, 3);
 
-        assertThat(baseball.isStrike(baseball.isSame(ball1.getBallNum(), ball2.getBallNum()), baseball.isSame(ball1.getPosition(), ball2.getPosition()))).isTrue();
+        assertThat(baseball.isStrike(ball1, ball2)).isEqualTo(3);
     }
 
     @DisplayName("볼 여부 확인하는 로직")
     @Test
     void isBallTest() {
-        ball1.setBallNum(1);
-        ball1.setPosition(1);
-        ball2.setBallNum(1);
-        ball2.setPosition(2);
+        ball1.setBallArray(0, 1);
+        ball1.setBallArray(1, 2);
+        ball1.setBallArray(2, 3);
+        ball2.setBallArray(0, 2);
+        ball2.setBallArray(1, 3);
+        ball2.setBallArray(2, 1);
 
-        assertThat(baseball.isBall(baseball.isSame(ball1.getBallNum(), ball2.getBallNum()), baseball.isSame(ball1.getPosition(), ball2.getPosition()))).isTrue();
-    }
-
-    @DisplayName("낫싱 여부 확인하는 로직")
-    @Test
-    void isNothingTest() {
-        ball1.setBallNum(1);
-        ball1.setPosition(1);
-        ball2.setBallNum(2);
-        ball2.setPosition(1);
-
-        assertThat(baseball.isNothing(baseball.isSame(ball1.getBallNum(), ball2.getBallNum()), baseball.isSame(ball1.getPosition(), ball2.getPosition()))).isTrue();
+        assertThat(baseball.isBall(ball1, ball2)).isEqualTo(3);
     }
 
     @DisplayName("세 자리 숫자 랜덤으로 생성하는 로직")
@@ -76,5 +69,16 @@ public class BaseballTest {
     void isDuplicatedThreeDigitNumberTest() {
         int num = 132;
         assertThat(baseball.isDuplicatedThreeDigitNumber(num)).isEqualTo(3);
+    }
+
+    @DisplayName("숫자에서 자리 수와 값을 추출해서 저장하는 로직")
+    @Test
+    void insertIdxAndNumTest() {
+        int num = 123;
+        Ball testBall = baseball.insertIdxAndNum(num);
+
+        assertThat(testBall.getBallArray(0)).isEqualTo(1);
+        assertThat(testBall.getBallArray(1)).isEqualTo(2);
+        assertThat(testBall.getBallArray(2)).isEqualTo(3);
     }
 }

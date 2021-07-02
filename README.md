@@ -31,11 +31,12 @@ ex) git checkout -b apply-feedback
 ###기능구현 목록
 
 * 숫자 생성 로직
-    * 세 자리 랜덤 숫자, 입력받은 숫 생성 로직
-        * 각 자리 수가 서로 다른 수로 이루어진 것 확인하는 로직
-        * 세 자리 숫자 나눠서 set에 넣는 로직
+    * 세 자리 랜덤 숫자, 입력받은 숫 생성 로직 (makeRandomThreeDigitNumber)
+        * 각 자리 수가 서로 다른 수로 이루어진 것 확인하는 로직 (isDuplicatedThreeDigitNumber)
+        * 세 자리 숫자 나눠서 set에 넣는 로직 (makeCheckingDuplicatedNumberSet)
+    * 숫자에서 자리 수와 값을 추출해서 저장하는 로직 (insertIdxAndNum)
 * 숫자 및 위치 확인 로직
-    * 스트라이크 여부 확인 로직
-    * 볼 여부 확인 로직
-    * 낫싱 여부 확인 로직
+    * 스트라이크 여부 확인 로직(isStrike)
+    * 볼 여부 확인 로직(isBall)
+    * 숫자가 같은 지 확인하는 로직(isSame)
 

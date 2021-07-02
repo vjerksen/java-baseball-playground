@@ -1,12 +1,14 @@
 package baseball;
 
+import java.util.ArrayList;
+
 public class Ball {
 
     private int ballNumber;
-    private int position;
-    private int ballNum;
+    private ArrayList<Integer> ballArray;
 
     public Ball() {
+        this.ballArray = new ArrayList<>(3);
     }
 
     public int getBallNumber() {
@@ -17,19 +19,11 @@ public class Ball {
         this.ballNumber = ballNumber;
     }
 
-    public int getPosition() {
-        return position;
+    public int getBallArray(int idx) {
+        return ballArray.get(idx);
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public int getBallNum() {
-        return ballNum;
-    }
-
-    public void setBallNum(int ballNum) {
-        this.ballNum = ballNum;
+    public void setBallArray(int idx, int ballNum) {
+        this.ballArray.add(idx, ballNum);
     }
 }

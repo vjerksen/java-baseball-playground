@@ -6,42 +6,42 @@ import java.util.Set;
 
 public class Baseball {
 
-    public Baseball() {
-    }
+    final int TOT_BALL_COUNT = 3;
 
-    public boolean isSame(int num1, int num2) {
+    public int isSame(int num1, int num2) {
         if (num1 == num2) {
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
     }
 
-    public boolean isStrike(boolean same, boolean same1) {
-        if (same == true && same1 == true) {
-            return true;
+
+    public int isStrike(Ball ball1, Ball ball2) {
+        int returnValue = 0;
+
+        for (int i = 0; i < TOT_BALL_COUNT; i++) {
+            returnValue += isSame(ball1.getBallArray(i), ball2.getBallArray(i));
         }
-        return false;
+
+        return returnValue;
     }
 
-    public boolean isBall(boolean same, boolean same1) {
-        if (same == true && same1 == false) {
-            return true;
-        }
-        return false;
-    }
+    public int isBall(Ball ball1, Ball ball2) {
+        int returnValue = 0;
 
-    public boolean isNothing(boolean same, boolean same1) {
-        if (same == false) {
-            return true;
+        for (int i = 0; i < TOT_BALL_COUNT; i++) {
+            returnValue += isSame(ball1.getBallArray(i), ball2.getBallArray((i + 1) % 3));
+            returnValue += isSame(ball1.getBallArray(i), ball2.getBallArray((i + 2) % 3));
         }
-        return false;
+
+        return returnValue;
     }
 
     public int makeRandomThreeDigitNumber() {
         Random rand = new Random();
         int returnValue = 0;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < TOT_BALL_COUNT; i++) {
             returnValue = (returnValue * 10) + (rand.nextInt(9) + 1);
         }
 
@@ -54,16 +54,27 @@ public class Baseball {
         return set.size();
     }
 
-    public Set<Integer> makeCheckingDuplicatedNumberSet(int i) {
+    public Set<Integer> makeCheckingDuplicatedNumberSet(int num) {
         Set<Integer> set = new HashSet<>();
 
-        while (i > 0) {
-            set.add(i % 10);
-            i /= 10;
+        while (num > 0) {
+            set.add(num % 10);
+            num /= 10;
         }
 
         return set;
     }
 
+    public Ball insertIdxAndNum(int num) {
+        Ball testBall = new Ball();
+        int idx = 0;
 
+        testBall.setBallNumber(num);
+        while (num > 0) {
+            testBall.setBallArray(idx, num % 10);
+            num /= 10;
+        }
+
+        return testBall;
+    }
 }
