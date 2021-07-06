@@ -24,3 +24,18 @@ git checkout main // 기본 브랜치가 main인 경우
 git checkout -b 브랜치이름
 ex) git checkout -b apply-feedback
 ```
+
+
+## 숫자 야구게임 구현
+
+### 기능 목록 구현
+
+* 숫자의 유효성 체크
+
+* 한 숫자만 서로 비교
+    * 스트라이크 여부
+    * 볼 여부
+    
+* 전체 숫자를 서로 비교
+    * 스트라이크 여부
+    * 볼 여부
